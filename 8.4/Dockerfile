@@ -5,10 +5,10 @@ FROM       debian:stretch
 ENV LANG            C.UTF-8
 
 RUN apt-get update && apt-get install -y --no-install-recommends gnupg dirmngr && \
-    echo 'deb http://ppa.launchpad.net/hvr/ghc/ubuntu xenial main' > /etc/apt/sources.list.d/ghc.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F6F88286 && \
+    echo 'deb http://downloads.haskell.org/debian stretch main' > /etc/apt/sources.list.d/ghc.list && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA3CBA3FFE22B574 && \
     apt-get update && \
-    apt-get install -y --no-install-recommends cabal-install-2.0 ghc-8.4.1 happy-1.19.5 alex-3.1.7 \
+    apt-get install -y --no-install-recommends cabal-install-2.2 ghc-8.4.2 \
             zlib1g-dev libtinfo-dev libsqlite3-0 libsqlite3-dev ca-certificates g++ git curl && \
     curl -fSL https://github.com/commercialhaskell/stack/releases/download/v1.6.1/stack-1.6.1-linux-x86_64-static.tar.gz -o stack.tar.gz && \
     curl -fSL https://github.com/commercialhaskell/stack/releases/download/v1.6.1/stack-1.6.1-linux-x86_64-static.tar.gz.asc -o stack.tar.gz.asc && \
@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gnupg dirmngr &
     /usr/local/bin/stack config set system-ghc --global true && \
     rm -rf "$GNUPGHOME" /var/lib/apt/lists/* /stack.tar.gz.asc /stack.tar.gz
 
-ENV PATH /root/.cabal/bin:/root/.local/bin:/opt/cabal/2.0/bin:/opt/ghc/8.4.1/bin:/opt/happy/1.19.5/bin:/opt/alex/3.1.7/bin:$PATH
+ENV PATH /root/.cabal/bin:/root/.local/bin:/opt/cabal/2.2/bin:/opt/ghc/8.4.2/bin:$PATH
 
 ## run ghci by default unless a command is specified
 CMD ["ghci"]
