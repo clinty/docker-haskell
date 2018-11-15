@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gnupg dirmngr &
     echo 'deb http://downloads.haskell.org/debian stretch main' > /etc/apt/sources.list.d/ghc.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA3CBA3FFE22B574 && \
     apt-get update && \
-    apt-get install -y --no-install-recommends cabal-install-2.4 ghc-8.6.1 \
+    apt-get install -y --no-install-recommends cabal-install-2.4 ghc-8.6.2 \
             zlib1g-dev libtinfo-dev libsqlite3-0 libsqlite3-dev ca-certificates g++ git curl && \
     curl -fSL https://github.com/commercialhaskell/stack/releases/download/v1.7.1/stack-1.7.1-linux-x86_64.tar.gz -o stack.tar.gz && \
     curl -fSL https://github.com/commercialhaskell/stack/releases/download/v1.7.1/stack-1.7.1-linux-x86_64.tar.gz.asc -o stack.tar.gz.asc && \
@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gnupg dirmngr &
     /usr/local/bin/stack config set system-ghc --global true && \
     rm -rf "$GNUPGHOME" /var/lib/apt/lists/* /stack.tar.gz.asc /stack.tar.gz
 
-ENV PATH /root/.cabal/bin:/root/.local/bin:/opt/cabal/2.4/bin:/opt/ghc/8.6.1/bin:$PATH
+ENV PATH /root/.cabal/bin:/root/.local/bin:/opt/cabal/2.4/bin:/opt/ghc/8.6.2/bin:$PATH
 
 ## run ghci by default unless a command is specified
 CMD ["ghci"]
